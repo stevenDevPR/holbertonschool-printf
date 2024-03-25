@@ -11,9 +11,13 @@
  */
 int _printf(const char *format, ...)
 {
-    va_list args;
-    int len = 0;
-  unsigned int ui;
+	va_list args;
+	int len = 0, ui;
+	if (!format)
+	{
+		printf("NULL\n");
+		return (0);
+	}
 
     va_start(args, format);
     while (format && *format)
@@ -23,6 +27,7 @@ int _printf(const char *format, ...)
             format++;
 	    if (*format == '\0')
 		    break;
+
             switch (*format)
             {
                 case 'd':
@@ -32,8 +37,7 @@ int _printf(const char *format, ...)
                 case 'u':
 		    ui = va_arg(args, unsigned int);
                     len += printf("%u", ui);
-                    break;
-                case 'o':
+                    break;		case 'o':
                     len += printf("%o", va_arg(args, unsigned int));
                     break;
                 case 'x':
