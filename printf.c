@@ -15,7 +15,6 @@ int _printf(const char *format, ...)
 	int len = 0, ui;
 	if (!format)
 	{
-		printf("NULL\n");
 		return (0);
 	}
 
