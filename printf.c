@@ -22,6 +22,8 @@ int _printf(const char *format, ...)
         if (format[count] == '%')
         {
             count++;
+	    if (format[count] == '\0')
+		    break;
             switch (format[count])
             {
                 case 'd':
