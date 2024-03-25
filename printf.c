@@ -17,14 +17,14 @@ int _printf(const char *format, ...)
   unsigned int ui;
 
     va_start(args, format);
-    while (format && format[count])
+    while (format && *format)
     {
-        if (format[count] == '%')
+        if (*format == '%')
         {
-            count++;
-	    if (format[count] == '\0')
+            format++;
+	    if (*format == '\0')
 		    break;
-            switch (format[count])
+            switch (*format)
             {
                 case 'd':
                 case 'i':
@@ -58,19 +58,19 @@ int _printf(const char *format, ...)
                     break;
                 default:
                     putchar('%');
-                    putchar(format[count]);
+                    putchar(*format);
                     len += 2;
                     break;
             }
         }
         else
         {
-            putchar(format[count]);
+            putchar(*format);
             len++;
         }
-        count++;
+        format++;
     }
     va_end(args);
 
-    return len;
+    return (len);
 }
