@@ -12,22 +12,16 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int len = 0, ui;
-	if (format == NULL)
-	{
-		return (0);
-	}
+	int len = 0, count = 0, ui;
 
 	va_start(args, format);
 
-	while (format && *format)
+	while (format && format[count])
 	{
-		if (*format == '%')
+		if (format[count] == '%')
 		{
-			format++;
-			if (*format == '\0')
-				break;
-			switch (*format)
+			count++;
+			switch (format[count])
 			{
 				case 'd':
 				case 'i':
@@ -61,17 +55,17 @@ int _printf(const char *format, ...)
 					break;
 				default:
 					putchar('%');
-					putchar(*format);
+					putchar(format[count]);
 					len += 2;
 					break;
 			}
 		}
 		else
 		{
-			putchar(*format);
+			putchar(format[count]);
 			len++;
 		}
-		format++;
+		count++;
 	}
 	va_end(args);
 
