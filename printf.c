@@ -11,7 +11,6 @@
  */
 int _printf(const char *format, ...)
 {
-<<<<<<< HEAD
 	va_list args;
 	int len = 0, ui;
 	if (!format)
@@ -19,23 +18,17 @@ int _printf(const char *format, ...)
 		printf("NULL\n");
 		return (0);
 	}
-=======
-<<<<<<< HEAD
-	va_list args;
-	int count = 0;
-	int len = 0;
-	unsigned int ui;
 
 	va_start(args, format);
 
-	while (format && format[count])
+	while (format && *format)
 	{
-		if (format[count] == '%')
+		if (*format == '%')
 		{
-			count++;
-			if (format[count] == '\0')
+			format++;
+			if (*format == '\0')
 				break;
-			switch (format[count])
+			switch (*format)
 			{
 				case 'd':
 				case 'i':
@@ -69,83 +62,19 @@ int _printf(const char *format, ...)
 					break;
 				default:
 					putchar('%');
-					putchar(format[count]);
+					putchar(*format);
 					len += 2;
 					break;
 			}
 		}
 		else
 		{
-			putchar(format[count]);
+			putchar(*format);
 			len++;
 		}
-		count++;
+		format++;
 	}
 	va_end(args);
 
 return len;
-=======
-    va_list args;
-    int len = 0;
-  unsigned int ui;
->>>>>>> cc68a1a0d057b05518a85e2b02db0d6878c99369
-
-    va_start(args, format);
-    while (format && *format)
-    {
-        if (*format == '%')
-        {
-            format++;
-	    if (*format == '\0')
-		    break;
-
-            switch (*format)
-            {
-                case 'd':
-                case 'i':
-                    len += printf("%d", va_arg(args, int));
-                    break;
-                case 'u':
-		    ui = va_arg(args, unsigned int);
-                    len += printf("%u", ui);
-                    break;		case 'o':
-                    len += printf("%o", va_arg(args, unsigned int));
-                    break;
-                case 'x':
-                    len += printf("%x", va_arg(args, unsigned int));
-                    break;
-                case 'X':
-                    len += printf("%X", va_arg(args, unsigned int));
-                    break;
-                case 'c':
-                    len += printf("%c", va_arg(args, int));
-                    break;
-                case 's':
-                    len += printf("%s", va_arg(args, char *));
-                    break;
-                case 'p':
-                    len += printf("%p", va_arg(args, void *));
-                    break;
-                case '%':
-                    putchar('%');
-                    len++;
-                    break;
-                default:
-                    putchar('%');
-                    putchar(*format);
-                    len += 2;
-                    break;
-            }
-        }
-        else
-        {
-            putchar(*format);
-            len++;
-        }
-        format++;
-    }
-    va_end(args);
-
-    return (len);
->>>>>>> af9cfeb18f5b7ffc39bff8e2b8ca1abada4ad2bc
 }
