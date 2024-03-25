@@ -30,7 +30,7 @@ int _printf(const char *format, ...)
                     break;
                 case 'u':
 		    ui = va_arg(args, unsigned int);
-                    len += printf("%u", va_arg(args, unsigned int));
+                    len += printf("%u", ui);
                     break;
                 case 'o':
                     len += printf("%o", va_arg(args, unsigned int));
