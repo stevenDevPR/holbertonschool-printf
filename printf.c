@@ -17,18 +17,25 @@ int _printf(const char *format, ...)
     if (!format)
         return (-1);
 
-    while (*format) {
-        if (*format == '%') {
+    while (*format)
+    {
+        if (*format == '%')
+	{
             if (*(format + 1) == '%')
 	    {
                 len += print_percent();
                 format += 2;
                 continue;
 	    }
+	    else if (*(format + 1) == '\0')
+	    {
+		    va_end(args);
+		    return (-1);
+	    }
 	    else
 	    {
 		    format++;
-	    len += handle_format(format, args);
+		    len += handle_format(format, args);
 	    }
 	}
 	    else 
