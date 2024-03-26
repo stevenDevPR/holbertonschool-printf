@@ -71,7 +71,7 @@ int _printf(const char *format, ...)
 		}
 		count++;
 	}
-	putchar(-1);
+
 	va_end(args);
 
 return len;
