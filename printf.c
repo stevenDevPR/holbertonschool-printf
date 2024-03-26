@@ -24,7 +24,21 @@ int _printf(const char *format, ...)
 	{
 		if (format[count] == '%')
 		{
-			count++;
+			if (format[count + 1] == '%')
+			{
+				putchar('%');
+				len++;
+				count += 2;
+				continue;
+			}
+			else if (format[count + 1] == '\0')
+			{
+				va_end(args);
+				return (-1);
+			}
+			else
+			{
+				count++;
 			switch (format[count])
 			{
 				case 'd':
@@ -53,23 +67,16 @@ int _printf(const char *format, ...)
 				case 'p':
 					len += printf("%p", va_arg(args, void *));
 					break;
-				case '%':
-					if (format[count + 1] != '\0')
-					{
-						putchar('%');
-						len++;
-					}
-					else
-					{
-						return (-1);
-					}
-						break;
+				case '\0':
+					va_end(args);
+					return (-1);
 				default:
 					putchar('%');
 					putchar(format[count]);
 					len += 2;
 					break;
 			}
+		}
 		}
 		else
 		{
