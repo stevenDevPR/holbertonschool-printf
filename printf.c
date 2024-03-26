@@ -54,8 +54,13 @@ int _printf(const char *format, ...)
 					len += printf("%p", va_arg(args, void *));
 					break;
 				case '%':
+					if (format[count] + 1 != NULL)
+					{
+						putchar('%');
+						len++;
+						break;
+					}
 					return (-1);
-					break;
 				default:
 					putchar('%');
 					putchar(format[count]);
