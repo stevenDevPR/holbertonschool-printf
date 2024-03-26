@@ -24,9 +24,12 @@ int _printf(const char *format, ...)
                 len += print_percent();
                 format += 2;
                 continue;
-	    } 
-	    format++;
+	    }
+	    else
+	    {
+		    format++;
 	    len += handle_format(format, args);
+	    }
 	}
 	    else 
 	    {
