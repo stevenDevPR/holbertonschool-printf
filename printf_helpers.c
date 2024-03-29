@@ -7,12 +7,14 @@
  * @args: arguments
  * Return: len
  */
-int handle_format(const char *format, va_list args) {
-    int len = 0;
-    switch (*(format)) {
-        case 'd':
-        case 'i':
-            len += print_int(va_arg(args, int));
+int handle_format(const char *format, va_list args)
+{
+	int len = 0;
+	switch (*(format))
+	{
+		case 'd':
+		case 'i':
+			len += print_int(va_arg(args, int));
             break;
         case 'u':
             len += print_uint(va_arg(args, unsigned int));
