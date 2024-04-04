@@ -35,7 +35,7 @@ int _printf(const char *format, ...)
 			else
 			{
 				format++;
-				len += handle_format(format, args); 
+				len += handle_format(format, args);
 			}
 		}
 		else
